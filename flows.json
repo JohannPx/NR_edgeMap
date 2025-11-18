@@ -1,1 +1,1448 @@
-[]
+[
+    {
+        "id": "67cf43f4034018df",
+        "type": "tab",
+        "label": "Organisation",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d6afc30226746536",
+        "type": "junction",
+        "z": "67cf43f4034018df",
+        "x": 200,
+        "y": 400,
+        "wires": [
+            [
+                "087606f216dd3ed1",
+                "ee047e1bf31a171b",
+                "92fb2f0be3ac7310"
+            ]
+        ]
+    },
+    {
+        "id": "a6c88074c4dd0998",
+        "type": "junction",
+        "z": "67cf43f4034018df",
+        "x": 460,
+        "y": 640,
+        "wires": [
+            [
+                "c9567d8bb9fc99b8"
+            ]
+        ]
+    },
+    {
+        "id": "a250c8240a3d3b8d",
+        "type": "junction",
+        "z": "67cf43f4034018df",
+        "x": 180,
+        "y": 500,
+        "wires": [
+            [
+                "6e887723a57ec017"
+            ]
+        ]
+    },
+    {
+        "id": "3f0da2b9df0ac8c2",
+        "type": "mongodb4-client",
+        "name": "",
+        "protocol": "mongodb",
+        "hostname": "172.17.0.4",
+        "port": "",
+        "dbName": "NR_edgeMap",
+        "appName": "",
+        "authSource": "",
+        "authMechanism": "DEFAULT",
+        "tls": false,
+        "tlsCAFile": "",
+        "tlsCertificateKeyFile": "",
+        "tlsInsecure": false,
+        "connectTimeoutMS": "30000",
+        "socketTimeoutMS": "0",
+        "minPoolSize": "0",
+        "maxPoolSize": "100",
+        "maxIdleTimeMS": "0",
+        "uri": "",
+        "advanced": "{}",
+        "uriTabActive": "tab-uri-simple"
+    },
+    {
+        "id": "960a93fbd5ec6e3d",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#117bdf",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#117bdf",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#117bdf",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#4ba1f1",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#117bdf",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "EdgeMap",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "f9e288ebe1ecf388",
+        "type": "ui_tab",
+        "name": "Organisations",
+        "icon": "domain",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "aa0a9167e2db56c7",
+        "type": "ui_group",
+        "name": "Organisation",
+        "tab": "f9e288ebe1ecf388",
+        "order": 1,
+        "disp": false,
+        "width": "32",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8180cae7e4a9352e",
+        "type": "ui_tab",
+        "name": "Sites",
+        "icon": "location_city",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "66899e542a959b96",
+        "type": "ui_spacer",
+        "z": "67cf43f4034018df",
+        "name": "spacer",
+        "group": "aa0a9167e2db56c7",
+        "order": 7,
+        "width": "17",
+        "height": "1"
+    },
+    {
+        "id": "8f44a5a6b537899f",
+        "type": "ui_group",
+        "name": "Site",
+        "tab": "8180cae7e4a9352e",
+        "order": 1,
+        "disp": false,
+        "width": "32",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "009feb7b6b826a3a",
+        "type": "ui_spacer",
+        "z": "67cf43f4034018df",
+        "name": "spacer",
+        "group": "aa0a9167e2db56c7",
+        "order": 12,
+        "width": "14",
+        "height": "4"
+    },
+    {
+        "id": "3e2d8e894bd03b15",
+        "type": "ui_spacer",
+        "z": "67cf43f4034018df",
+        "name": "spacer",
+        "group": "aa0a9167e2db56c7",
+        "order": 9,
+        "width": "20",
+        "height": "1"
+    },
+    {
+        "id": "3edbfbdd1c2610f5",
+        "type": "ui_table",
+        "z": "67cf43f4034018df",
+        "group": "aa0a9167e2db56c7",
+        "name": "Table",
+        "order": 10,
+        "width": "12",
+        "height": "12",
+        "columns": [
+            {
+                "field": "code",
+                "title": "Code",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "name",
+                "title": "Name",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "desc",
+                "title": "Description",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 870,
+        "y": 400,
+        "wires": [
+            [
+                "64de0bf0b4450d5c",
+                "0f07095377334d56",
+                "2f718ffde175f05e"
+            ]
+        ]
+    },
+    {
+        "id": "c9a0c4c31f8002a8",
+        "type": "ui_form",
+        "z": "67cf43f4034018df",
+        "name": "Form",
+        "label": "",
+        "group": "aa0a9167e2db56c7",
+        "order": 11,
+        "width": "6",
+        "height": "3",
+        "options": [
+            {
+                "label": "Name",
+                "value": "name",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Code",
+                "value": "code",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Description",
+                "value": "desc",
+                "type": "text",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "name": "",
+            "code": "",
+            "desc": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 170,
+        "y": 80,
+        "wires": [
+            [
+                "4597313fdc56ef4e"
+            ]
+        ]
+    },
+    {
+        "id": "4597313fdc56ef4e",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Check if Exists",
+        "func": "const data = msg.payload;\n\n// Trim les valeurs\nconst cleanData = {\n    name: data.name.trim(),\n    code: data.code.trim(),\n    desc: data.desc.trim()\n};\n\n// Recherche par code (clé unique)\nmsg.collection = \"organizations\";\nmsg.operation = \"findOne\";\nmsg.payload = [\n    { code: cleanData.code }\n];\n\n// Sauvegarder les données nettoyées\nmsg.cleanData = cleanData;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 80,
+        "wires": [
+            [
+                "fefd72e9dc21e5b2"
+            ]
+        ]
+    },
+    {
+        "id": "5cb9232a84982d03",
+        "type": "switch",
+        "z": "67cf43f4034018df",
+        "name": "Exists?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 280,
+        "y": 220,
+        "wires": [
+            [
+                "dcde6afa705efc53"
+            ],
+            [
+                "10270d25f327946a"
+            ]
+        ]
+    },
+    {
+        "id": "fefd72e9dc21e5b2",
+        "type": "mongodb4",
+        "z": "67cf43f4034018df",
+        "clientNode": "3f0da2b9df0ac8c2",
+        "mode": "collection",
+        "collection": "",
+        "operation": "",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Search",
+        "x": 520,
+        "y": 80,
+        "wires": [
+            [
+                "5cb9232a84982d03"
+            ]
+        ]
+    },
+    {
+        "id": "10270d25f327946a",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Prepare Insert",
+        "func": "msg.collection = \"organizations\";\nmsg.operation = \"insertOne\";\nmsg.topic = msg.operation;\nmsg.payload = [{\n    name: msg.cleanData.name,\n    code: msg.cleanData.code,\n    desc: msg.cleanData.desc,\n    createdAt: new Date(),\n    updatedAt: new Date()\n}];\n\n// Garder cleanData pour la notification\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 240,
+        "wires": [
+            [
+                "3f8d80938eea92c7"
+            ]
+        ]
+    },
+    {
+        "id": "3f8d80938eea92c7",
+        "type": "mongodb4",
+        "z": "67cf43f4034018df",
+        "clientNode": "3f0da2b9df0ac8c2",
+        "mode": "collection",
+        "collection": "",
+        "operation": "",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Insert",
+        "x": 630,
+        "y": 240,
+        "wires": [
+            [
+                "f634042752148264",
+                "4c733ee84aebdfcd"
+            ]
+        ]
+    },
+    {
+        "id": "f634042752148264",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Success Notification",
+        "func": "return {\n    topic: msg.topic,\n    highlight: \"green\",\n    payload: `Organisation \"${msg.cleanData.name}\" créée avec succès`\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 260,
+        "wires": [
+            [
+                "e8fe220d8a7cda70"
+            ]
+        ]
+    },
+    {
+        "id": "5d18c81eca798bb1",
+        "type": "ui_toast",
+        "z": "67cf43f4034018df",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Succès",
+        "name": "notify",
+        "x": 885,
+        "y": 40,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "0d7e2c37e6694b59",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Format for Table",
+        "func": "const orgs = msg.payload || [];\n\nmsg.payload = orgs.map(org => ({\n    _id: org._id.toString(),\n    name: org.name,\n    code: org.code,\n    desc: org.desc\n}));\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "3edbfbdd1c2610f5"
+            ]
+        ]
+    },
+    {
+        "id": "087606f216dd3ed1",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Fetch All",
+        "func": "const searchTerm = flow.get(\"searchFilter\") || \"\";\nconst page = flow.get(\"currentPage\") || 1;\nconst limit = 20;\nconst skip = (page - 1) * limit;\n\nmsg.collection = \"organizations\";\nmsg.operation = \"find\";\n\n// Construire le filtre de recherche\nlet filter = {};\nif (searchTerm.trim() !== \"\") {\n    filter = {\n        $or: [\n            { name: { $regex: searchTerm, $options: \"i\" } },\n            { code: { $regex: searchTerm, $options: \"i\" } },\n            { desc: { $regex: searchTerm, $options: \"i\" } }\n        ]\n    };\n}\n\nmsg.payload = [\n    filter,\n    { \n        sort: { name: 1 },\n        limit: limit,\n        skip: skip\n    }\n];\n\n// Sauvegarder pour la pagination\nmsg.paginationInfo = {\n    currentPage: page,\n    itemsPerPage: limit\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 400,
+        "wires": [
+            [
+                "d55e04b04f7a9479"
+            ]
+        ]
+    },
+    {
+        "id": "d55e04b04f7a9479",
+        "type": "mongodb4",
+        "z": "67cf43f4034018df",
+        "clientNode": "3f0da2b9df0ac8c2",
+        "mode": "collection",
+        "collection": "",
+        "operation": "",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Load",
+        "x": 470,
+        "y": 400,
+        "wires": [
+            [
+                "0d7e2c37e6694b59",
+                "ab8a1391e71a8751"
+            ]
+        ]
+    },
+    {
+        "id": "64de0bf0b4450d5c",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Fill Form from Row",
+        "func": "const row = msg.payload;\n\nflow.set(\"selected\", {\n    _id: row._id,\n    name: row.name,\n    code: row.code,\n    description: row.desc\n});\n\nmsg.payload = {\n    name: row.name,\n    code: row.code,\n    desc: row.desc || \"\"\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1060,
+        "y": 400,
+        "wires": [
+            [
+                "0c8f59cece3f315a"
+            ]
+        ]
+    },
+    {
+        "id": "dcde6afa705efc53",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Prepare Update",
+        "func": "const existingId = msg.payload._id;\n\nmsg.collection = \"organizations\";\nmsg.operation = \"updateOne\";\nmsg.topic = msg.operation;\nmsg.payload = [\n    { _id: existingId },  // Filtre par _id\n    {\n        $set: {\n            name: msg.cleanData.name,\n            desc: msg.cleanData.desc,\n            updatedAt: new Date()\n            // code ne change PAS (clé unique)\n        }\n    }\n];\n\n// Garder pour notification\nmsg.updatedName = msg.cleanData.name;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 200,
+        "wires": [
+            [
+                "8ad716ec171238bd"
+            ]
+        ]
+    },
+    {
+        "id": "8ad716ec171238bd",
+        "type": "mongodb4",
+        "z": "67cf43f4034018df",
+        "clientNode": "3f0da2b9df0ac8c2",
+        "mode": "collection",
+        "collection": "",
+        "operation": "",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Update",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "69c173985bdca9c6",
+                "4c733ee84aebdfcd"
+            ]
+        ]
+    },
+    {
+        "id": "69c173985bdca9c6",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Update Notification",
+        "func": "return {\n    topic: msg.topic,\n    highlight: \"blue\",\n    payload: `Organisation \"${msg.updatedName}\" mise à jour`\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 180,
+        "wires": [
+            [
+                "e8fe220d8a7cda70"
+            ]
+        ]
+    },
+    {
+        "id": "4c733ee84aebdfcd",
+        "type": "link out",
+        "z": "67cf43f4034018df",
+        "name": "refresh-table",
+        "mode": "link",
+        "links": [
+            "9bb4be3ed51f4dd9",
+            "50266d30833449d9"
+        ],
+        "x": 765,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9bb4be3ed51f4dd9",
+        "type": "link in",
+        "z": "67cf43f4034018df",
+        "name": "refresh-table",
+        "links": [
+            "4c733ee84aebdfcd",
+            "c9567d8bb9fc99b8"
+        ],
+        "x": 145,
+        "y": 400,
+        "wires": [
+            [
+                "d6afc30226746536"
+            ]
+        ]
+    },
+    {
+        "id": "861fb2a4420eb763",
+        "type": "ui_button",
+        "z": "67cf43f4034018df",
+        "name": "Refresh",
+        "group": "aa0a9167e2db56c7",
+        "order": 1,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 460,
+        "wires": [
+            [
+                "a250c8240a3d3b8d"
+            ]
+        ]
+    },
+    {
+        "id": "0c8f59cece3f315a",
+        "type": "link out",
+        "z": "67cf43f4034018df",
+        "name": "form",
+        "mode": "link",
+        "links": [
+            "fbc7d4d699d2f5e4"
+        ],
+        "x": 1205,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "fbc7d4d699d2f5e4",
+        "type": "link in",
+        "z": "67cf43f4034018df",
+        "name": "form",
+        "links": [
+            "0c8f59cece3f315a",
+            "4450d36518769ac8"
+        ],
+        "x": 75,
+        "y": 80,
+        "wires": [
+            [
+                "c9a0c4c31f8002a8"
+            ]
+        ]
+    },
+    {
+        "id": "ee047e1bf31a171b",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Count Total",
+        "func": "const searchTerm = flow.get(\"searchFilter\") || \"\";\n\nmsg.collection = \"organizations\";\nmsg.operation = \"countDocuments\";\n\n// Utiliser le même filtre que pour la recherche\nlet filter = {};\nif (searchTerm.trim() !== \"\") {\n    filter = {\n        $or: [\n            { name: { $regex: searchTerm, $options: \"i\" } },\n            { code: { $regex: searchTerm, $options: \"i\" } },\n            { desc: { $regex: searchTerm, $options: \"i\" } }\n        ]\n    };\n}\n\nmsg.payload = [filter];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 460,
+        "wires": [
+            [
+                "4f5f9d07b34e38d5"
+            ]
+        ]
+    },
+    {
+        "id": "4f5f9d07b34e38d5",
+        "type": "mongodb4",
+        "z": "67cf43f4034018df",
+        "clientNode": "3f0da2b9df0ac8c2",
+        "mode": "collection",
+        "collection": "",
+        "operation": "",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Count",
+        "x": 470,
+        "y": 460,
+        "wires": [
+            [
+                "6c4fe2f26dc8488e"
+            ]
+        ]
+    },
+    {
+        "id": "6c4fe2f26dc8488e",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Store Total Count",
+        "func": "const totalCount = msg.payload;\n\n// Stocker dans flow context pour réutilisation\nflow.set(\"totalOrganizations\", totalCount);\n\nmsg.payload = {\n    total: totalCount,\n    pages: Math.ceil(totalCount / 20)\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 460,
+        "wires": [
+            [
+                "a368b2d95232f0c7"
+            ]
+        ]
+    },
+    {
+        "id": "7c12750a1d5bc92f",
+        "type": "ui_text",
+        "z": "67cf43f4034018df",
+        "group": "aa0a9167e2db56c7",
+        "order": 4,
+        "width": "4",
+        "height": "1",
+        "name": "Page Info",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1060,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "a368b2d95232f0c7",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Format Page Info",
+        "func": "const page = flow.get(\"currentPage\") || 1;\nconst total = flow.get(\"totalOrganizations\") || 0;\nconst itemsPerPage = 20;\nconst totalPages = Math.ceil(total / itemsPerPage);\n\nmsg.payload = `Page ${page} sur ${totalPages} (${total})`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 460,
+        "wires": [
+            [
+                "7c12750a1d5bc92f"
+            ]
+        ]
+    },
+    {
+        "id": "d5c081997a43ec18",
+        "type": "ui_button",
+        "z": "67cf43f4034018df",
+        "name": "⏮ Première",
+        "group": "aa0a9167e2db56c7",
+        "order": 2,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "first_page",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 580,
+        "wires": [
+            [
+                "6e887723a57ec017"
+            ]
+        ]
+    },
+    {
+        "id": "6e887723a57ec017",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "First Page",
+        "func": "const page = 1;\nflow.set(\"currentPage\", page);\n\nmsg.page = page;\nmsg.limit = 20;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 580,
+        "wires": [
+            [
+                "a6c88074c4dd0998"
+            ]
+        ]
+    },
+    {
+        "id": "c9567d8bb9fc99b8",
+        "type": "link out",
+        "z": "67cf43f4034018df",
+        "name": "refresh-table",
+        "mode": "link",
+        "links": [
+            "9bb4be3ed51f4dd9",
+            "50266d30833449d9"
+        ],
+        "x": 515,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "0db151b2bd60e644",
+        "type": "ui_button",
+        "z": "67cf43f4034018df",
+        "name": "◀ Précédente",
+        "group": "aa0a9167e2db56c7",
+        "order": 3,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "skip_previous",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 620,
+        "wires": [
+            [
+                "b2aede2fafe1c822"
+            ]
+        ]
+    },
+    {
+        "id": "b2aede2fafe1c822",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Previous Page",
+        "func": "const currentPage = flow.get(\"currentPage\") || 1;\nconst newPage = Math.max(1, currentPage - 1);\n\nflow.set(\"currentPage\", newPage);\n\nmsg.page = newPage;\nmsg.limit = 20;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 620,
+        "wires": [
+            [
+                "a6c88074c4dd0998"
+            ]
+        ]
+    },
+    {
+        "id": "cde96afc1d2fea36",
+        "type": "ui_button",
+        "z": "67cf43f4034018df",
+        "name": "Suivante ▶",
+        "group": "aa0a9167e2db56c7",
+        "order": 5,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "skip_next",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 660,
+        "wires": [
+            [
+                "432d8770c8999127"
+            ]
+        ]
+    },
+    {
+        "id": "432d8770c8999127",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Next Page",
+        "func": "const currentPage = flow.get(\"currentPage\") || 1;\nconst total = flow.get(\"totalOrganizations\") || 0;\nconst itemsPerPage = 20;\nconst maxPage = Math.ceil(total / itemsPerPage);\n\nconst newPage = Math.min(maxPage, currentPage + 1);\n\nflow.set(\"currentPage\", newPage);\n\nmsg.page = newPage;\nmsg.limit = 20;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 660,
+        "wires": [
+            [
+                "a6c88074c4dd0998"
+            ]
+        ]
+    },
+    {
+        "id": "235bea0f088692ed",
+        "type": "ui_button",
+        "z": "67cf43f4034018df",
+        "name": "Dernière ⏭",
+        "group": "aa0a9167e2db56c7",
+        "order": 6,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "last_page",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 700,
+        "wires": [
+            [
+                "c8b51fcbba95bd64"
+            ]
+        ]
+    },
+    {
+        "id": "c8b51fcbba95bd64",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Last Page",
+        "func": "const total = flow.get(\"totalOrganizations\") || 0;\nconst itemsPerPage = 20;\nconst lastPage = Math.ceil(total / itemsPerPage);\n\nflow.set(\"currentPage\", lastPage);\n\nmsg.page = lastPage;\nmsg.limit = 20;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 700,
+        "wires": [
+            [
+                "a6c88074c4dd0998"
+            ]
+        ]
+    },
+    {
+        "id": "116299938542d479",
+        "type": "ui_button",
+        "z": "67cf43f4034018df",
+        "name": "",
+        "group": "aa0a9167e2db56c7",
+        "order": 13,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "Delete",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "delete",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 780,
+        "wires": [
+            [
+                "ca3a6694bf31017a"
+            ]
+        ]
+    },
+    {
+        "id": "501c637bfe15a4af",
+        "type": "ui_text_input",
+        "z": "67cf43f4034018df",
+        "name": "Filter",
+        "label": "Filter",
+        "tooltip": "",
+        "group": "aa0a9167e2db56c7",
+        "order": 8,
+        "width": "12",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 90,
+        "y": 840,
+        "wires": [
+            [
+                "8db1a1b445b09d8a"
+            ]
+        ]
+    },
+    {
+        "id": "074120091351742f",
+        "type": "ui_template",
+        "z": "67cf43f4034018df",
+        "group": "",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    .tabulator-row.tabulator-selected {\n        background: #a6cef2 !important;\n    }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 75,
+        "y": 40,
+        "wires": [
+            []
+        ],
+        "l": false
+    },
+    {
+        "id": "0f07095377334d56",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "select",
+        "func": "const previousId = context.get('selected');\n\ncontext.set('selected', msg.payload.id);\n\nconst commands = [];\n\nif (previousId) {\n    commands.push({\n        payload: {\n            command: 'deselectRow',\n            arguments: [previousId]\n        }\n    });\n}\n\ncommands.push({\n    payload: {\n        command: 'selectRow',\n        arguments: [msg.payload.id]\n    }\n});\n\nreturn [commands];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 865,
+        "y": 340,
+        "wires": [
+            [
+                "3edbfbdd1c2610f5",
+                "2f718ffde175f05e"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "2f718ffde175f05e",
+        "type": "debug",
+        "z": "67cf43f4034018df",
+        "name": "table",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 995,
+        "y": 340,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "3e62143592eb0c70",
+        "type": "ui_toast",
+        "z": "67cf43f4034018df",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "Non",
+        "cancel": "Oui",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "Delete?",
+        "x": 460,
+        "y": 740,
+        "wires": [
+            [
+                "8c1f172279c4dfee"
+            ]
+        ]
+    },
+    {
+        "id": "ca3a6694bf31017a",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Check Selection",
+        "func": "const selected = flow.get(\"selected\");\nmsg.topic = \"deleteOne\";\n\nif (!selected) {\n    // Aucune organisation sélectionnée\n    return [null, {\n        topic: msg.topic,\n        highlight: \"orange\",\n        payload: `Veuillez sélectionner une organisation à supprimer`\n    }];  // Output 2 (erreur)\n}\n\n// Organisation sélectionnée, demander confirmation\nmsg.payload = {\n    text: `Voulez-vous vraiment supprimer l'organisation \"${selected.name}\" (${selected.code}) ?`,\n    color: \"red\"\n};\n\nmsg.selected = selected;\n\nreturn [{\n    topic: msg.topic,\n    highlight: \"red\",\n    payload: `Voulez-vous vraiment supprimer l'organisation \"${selected.name}\" (${selected.code}) ?`\n}, null];  // Output 1 (confirmation)",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 780,
+        "wires": [
+            [
+                "3e62143592eb0c70"
+            ],
+            [
+                "4ea3b2ba0e052be9"
+            ]
+        ]
+    },
+    {
+        "id": "8c1f172279c4dfee",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Prepare Delete",
+        "func": "if (msg.payload != \"Oui\") return null;\n\nconst ObjectId = mongodb.ObjectId;\nconst selected = flow.get(\"selected\");\n\nmsg.collection = \"organizations\";\nmsg.operation = \"deleteOne\";\nmsg.topic = msg.operation;\nmsg.payload = [\n    { _id: new ObjectId(selected._id) }\n];\n\n// Garder le nom pour la notification\nmsg.deletedName = selected.name;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "mongodb",
+                "module": "mongodb"
+            }
+        ],
+        "x": 720,
+        "y": 700,
+        "wires": [
+            [
+                "9f1b1c2ea5638d45"
+            ]
+        ]
+    },
+    {
+        "id": "9f1b1c2ea5638d45",
+        "type": "mongodb4",
+        "z": "67cf43f4034018df",
+        "clientNode": "3f0da2b9df0ac8c2",
+        "mode": "collection",
+        "collection": "",
+        "operation": "",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Delete",
+        "x": 890,
+        "y": 700,
+        "wires": [
+            [
+                "4c231de6f5ed7ee5"
+            ]
+        ]
+    },
+    {
+        "id": "4c231de6f5ed7ee5",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Check Delete Result",
+        "func": "const result = msg.payload;\n\nif (result.deletedCount === 0) {\n    // Organisation non trouvée (cas rare)\n    return {\n        topic: msg.topic,\n        highlight: \"red\",\n        payload: `Organisation introuvable`\n    };\n}\n\n// Nettoyer la sélection\nflow.set(\"selected\", null);\n\n// Suppression réussie\nreturn {\n    topic: msg.topic,\n    highlight: \"green\",\n    payload: `Organisation \"${msg.deletedName}\" supprimée`\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 700,
+        "wires": [
+            [
+                "5b590e75cc2c0bc0",
+                "9e60b820f34386d2"
+            ]
+        ]
+    },
+    {
+        "id": "e8fe220d8a7cda70",
+        "type": "link out",
+        "z": "67cf43f4034018df",
+        "name": "notify",
+        "mode": "link",
+        "links": [
+            "df292d11cdd20e5c"
+        ],
+        "x": 995,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "df292d11cdd20e5c",
+        "type": "link in",
+        "z": "67cf43f4034018df",
+        "name": "notify",
+        "links": [
+            "e8fe220d8a7cda70",
+            "5b590e75cc2c0bc0",
+            "4ea3b2ba0e052be9"
+        ],
+        "x": 815,
+        "y": 40,
+        "wires": [
+            [
+                "5d18c81eca798bb1"
+            ]
+        ]
+    },
+    {
+        "id": "5b590e75cc2c0bc0",
+        "type": "link out",
+        "z": "67cf43f4034018df",
+        "name": "notify",
+        "mode": "link",
+        "links": [
+            "df292d11cdd20e5c"
+        ],
+        "x": 1235,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "4450d36518769ac8",
+        "type": "link out",
+        "z": "67cf43f4034018df",
+        "name": "form",
+        "mode": "link",
+        "links": [
+            "fbc7d4d699d2f5e4"
+        ],
+        "x": 455,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "92fb2f0be3ac7310",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Clear Form",
+        "func": "// Nettoyer la sélection\nflow.set(\"selected\", null);\n\nmsg.payload = {\n    name: \"\",\n    code: \"\",\n    desc: \"\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 340,
+        "wires": [
+            [
+                "4450d36518769ac8"
+            ]
+        ]
+    },
+    {
+        "id": "4ea3b2ba0e052be9",
+        "type": "link out",
+        "z": "67cf43f4034018df",
+        "name": "notify",
+        "mode": "link",
+        "links": [
+            "df292d11cdd20e5c"
+        ],
+        "x": 415,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "9e60b820f34386d2",
+        "type": "link out",
+        "z": "67cf43f4034018df",
+        "name": "delete",
+        "mode": "link",
+        "links": [
+            "9527ca5ceac336ee"
+        ],
+        "x": 1235,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "9527ca5ceac336ee",
+        "type": "link in",
+        "z": "67cf43f4034018df",
+        "name": "delete",
+        "links": [
+            "9e60b820f34386d2"
+        ],
+        "x": 125,
+        "y": 500,
+        "wires": [
+            [
+                "a250c8240a3d3b8d"
+            ]
+        ]
+    },
+    {
+        "id": "8db1a1b445b09d8a",
+        "type": "function",
+        "z": "67cf43f4034018df",
+        "name": "Apply Filter",
+        "func": "const searchTerm = (msg.payload || \"\").trim();\n\n// Stocker le filtre dans le flow context\nflow.set(\"searchFilter\", searchTerm);\n\n// Réinitialiser à la page 1 quand on filtre\nflow.set(\"currentPage\", 1);\n\nmsg.page = 1;\nmsg.limit = 20;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 840,
+        "wires": [
+            [
+                "77d59e261190d7e7"
+            ]
+        ]
+    },
+    {
+        "id": "77d59e261190d7e7",
+        "type": "link out",
+        "z": "67cf43f4034018df",
+        "name": "filter",
+        "mode": "link",
+        "links": [
+            "6714be9f740a20fe"
+        ],
+        "x": 385,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "6714be9f740a20fe",
+        "type": "link in",
+        "z": "67cf43f4034018df",
+        "name": "filter",
+        "links": [
+            "77d59e261190d7e7"
+        ],
+        "x": 125,
+        "y": 540,
+        "wires": [
+            [
+                "a250c8240a3d3b8d"
+            ]
+        ]
+    },
+    {
+        "id": "ab8a1391e71a8751",
+        "type": "debug",
+        "z": "67cf43f4034018df",
+        "name": "load",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 585,
+        "y": 360,
+        "wires": [],
+        "l": false
+    }
+]
