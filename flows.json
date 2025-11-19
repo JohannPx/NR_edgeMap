@@ -8,6 +8,14 @@
         "env": []
     },
     {
+        "id": "0a68234492479c04",
+        "type": "tab",
+        "label": "API",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "d6afc30226746536",
         "type": "junction",
         "z": "67cf43f4034018df",
@@ -642,8 +650,7 @@
         "name": "refresh-table",
         "mode": "link",
         "links": [
-            "9bb4be3ed51f4dd9",
-            "50266d30833449d9"
+            "9bb4be3ed51f4dd9"
         ],
         "x": 765,
         "y": 220,
@@ -880,8 +887,7 @@
         "name": "refresh-table",
         "mode": "link",
         "links": [
-            "9bb4be3ed51f4dd9",
-            "50266d30833449d9"
+            "9bb4be3ed51f4dd9"
         ],
         "x": 515,
         "y": 640,
@@ -1444,5 +1450,516 @@
         "y": 360,
         "wires": [],
         "l": false
+    },
+    {
+        "id": "400ffcca7455f6c6",
+        "type": "ui_template",
+        "z": "67cf43f4034018df",
+        "group": "aa0a9167e2db56c7",
+        "name": "",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "format": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n/* Layout 3 colonnes */\n.container {\n    display: flex;\n    gap: 20px;\n    height: 600px;\n}\n\n.tree-panel {\n    width: 250px;\n    border: 1px solid #ccc;\n    padding: 10px;\n    overflow-y: auto;\n}\n\n.crud-panel {\n    flex: 1;\n    border: 1px solid #ccc;\n    padding: 10px;\n}\n\n/* Arborescence */\n.tree ul {\n    list-style: none;\n    padding-left: 20px;\n}\n\n.tree li {\n    cursor: pointer;\n    padding: 5px;\n    margin: 2px 0;\n}\n\n.tree li:hover {\n    background: #eee;\n}\n\n.tree .selected {\n    background: #007bff;\n    color: white;\n}\n\n/* Form */\n.form-group {\n    margin-bottom: 10px;\n}\n\n.form-group label {\n    display: block;\n    font-weight: bold;\n}\n\n.form-group input {\n    width: 100%;\n    padding: 5px;\n}\n\nbutton {\n    margin: 5px 5px 5px 0;\n    padding: 8px 15px;\n}\n\n/* Table */\ntable {\n    width: 100%;\n    border-collapse: collapse;\n    margin-top: 20px;\n}\n\nth, td {\n    border: 1px solid #ddd;\n    padding: 8px;\n    text-align: left;\n}\n\nth {\n    background: #f4f4f4;\n}\n\n.actions button {\n    padding: 5px 10px;\n    margin: 0 2px;\n}\n</style>\n</head>\n<body>\n\n<div class=\"container\">\n    <!-- ZONE 1: Arborescence -->\n    <div class=\"tree-panel\">\n        <h3>Navigation</h3>\n        <div class=\"tree\">\n            <ul>\n                <li data-type=\"org\" data-id=\"1\">\n                    📁 Organisation 1\n                    <ul>\n                        <li data-type=\"site\" data-id=\"101\">📍 Site A</li>\n                        <li data-type=\"site\" data-id=\"102\">📍 Site B</li>\n                    </ul>\n                </li>\n                <li data-type=\"org\" data-id=\"2\">\n                    📁 Organisation 2\n                    <ul>\n                        <li data-type=\"site\" data-id=\"201\">📍 Site C</li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n    </div>\n\n    <!-- ZONE 2: CRUD -->\n    <div class=\"crud-panel\">\n        <h3 id=\"crud-title\">Sélectionnez un élément</h3>\n        \n        <!-- Formulaire -->\n        <div id=\"form-section\" style=\"display:none;\">\n            <div class=\"form-group\">\n                <label>Name:</label>\n                <input type=\"text\" id=\"input-name\" />\n            </div>\n            <div class=\"form-group\">\n                <label>Code:</label>\n                <input type=\"text\" id=\"input-code\" />\n            </div>\n            <div class=\"form-group\">\n                <label>Description:</label>\n                <input type=\"text\" id=\"input-desc\" />\n            </div>\n            <button onclick=\"saveItem()\">💾 Save</button>\n            <button onclick=\"clearForm()\">✖ Clear</button>\n        </div>\n\n        <!-- Table -->\n        <table id=\"data-table\" style=\"display:none;\">\n            <thead>\n                <tr>\n                    <th>Name</th>\n                    <th>Code</th>\n                    <th>Description</th>\n                    <th>Actions</th>\n                </tr>\n            </thead>\n            <tbody id=\"table-body\">\n            </tbody>\n        </table>\n    </div>\n</div>\n\n<script>\n(function(scope) {\n    let currentType = null;\n    let currentId = null;\n\n    // Clic sur arborescence\n    document.querySelectorAll('.tree li').forEach(item => {\n        item.addEventListener('click', function(e) {\n            e.stopPropagation();\n            \n            // Désélectionner tous\n            document.querySelectorAll('.tree li').forEach(el => \n                el.classList.remove('selected')\n            );\n            \n            // Sélectionner celui-ci\n            this.classList.add('selected');\n            \n            currentType = this.dataset.type;\n            currentId = this.dataset.id;\n            \n            // Charger les données\n            loadData(currentType, currentId);\n        });\n    });\n\n    // Charger données\n    function loadData(type, id) {\n        document.getElementById('crud-title').textContent = \n            type === 'org' ? 'Organisations' : 'Sites';\n        \n        document.getElementById('form-section').style.display = 'block';\n        document.getElementById('data-table').style.display = 'table';\n        \n        // Envoyer requête à Node-RED\n        scope.send({\n            payload: {\n                action: 'load',\n                type: type,\n                id: id\n            }\n        });\n    }\n\n    // Recevoir données depuis Node-RED\n    scope.$watch('msg', function(msg) {\n        if (msg && msg.payload) {\n            updateTable(msg.payload);\n        }\n    });\n\n    // Mettre à jour la table\n    function updateTable(data) {\n        const tbody = document.getElementById('table-body');\n        tbody.innerHTML = '';\n        \n        data.forEach(item => {\n            const row = tbody.insertRow();\n            row.innerHTML = `\n                <td>${item.name}</td>\n                <td>${item.code}</td>\n                <td>${item.desc || ''}</td>\n                <td class=\"actions\">\n                    <button onclick=\"editItem('${item._id}')\">✏️</button>\n                    <button onclick=\"deleteItem('${item._id}')\">🗑️</button>\n                </td>\n            `;\n        });\n    }\n\n    // Éditer\n    window.editItem = function(id) {\n        scope.send({\n            payload: {\n                action: 'edit',\n                id: id\n            }\n        });\n    };\n\n    // Supprimer\n    window.deleteItem = function(id) {\n        if (confirm('Supprimer cet élément ?')) {\n            scope.send({\n                payload: {\n                    action: 'delete',\n                    type: currentType,\n                    id: id\n                }\n            });\n        }\n    };\n\n    // Sauvegarder\n    window.saveItem = function() {\n        const data = {\n            name: document.getElementById('input-name').value,\n            code: document.getElementById('input-code').value,\n            desc: document.getElementById('input-desc').value\n        };\n        \n        scope.send({\n            payload: {\n                action: 'save',\n                type: currentType,\n                data: data\n            }\n        });\n    };\n\n    // Clear form\n    window.clearForm = function() {\n        document.getElementById('input-name').value = '';\n        document.getElementById('input-code').value = '';\n        document.getElementById('input-desc').value = '';\n    };\n\n})(scope);\n</script>\n\n</body>\n</html>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 920,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79b040ab53eae2b6",
+        "type": "http in",
+        "z": "0a68234492479c04",
+        "name": "",
+        "url": "/api/v1/organizations",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "cce2491aab89a0bd"
+            ]
+        ]
+    },
+    {
+        "id": "cce2491aab89a0bd",
+        "type": "function",
+        "z": "0a68234492479c04",
+        "name": "Get Organizations",
+        "func": "const page = parseInt(msg.req.query.page) || 1;\nconst limit = parseInt(msg.req.query.limit) || 50;\nconst skip = (page - 1) * limit;\nconst search = msg.req.query.search || \"\";\n\nmsg.collection = \"organizations\";\nmsg.operation = \"find\";\n\nlet filter = {};\nif (search.trim()) {\n    filter = {\n        $or: [\n            { name: { $regex: search, $options: \"i\" } },\n            { code: { $regex: search, $options: \"i\" } },\n            { desc: { $regex: search, $options: \"i\" } }\n        ]\n    };\n}\n\nmsg.payload = [filter, { sort: { name: 1 }, limit, skip }];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 60,
+        "wires": [
+            [
+                "946c01607139ba73"
+            ]
+        ]
+    },
+    {
+        "id": "946c01607139ba73",
+        "type": "mongodb4",
+        "z": "0a68234492479c04",
+        "clientNode": "3f0da2b9df0ac8c2",
+        "mode": "collection",
+        "collection": "",
+        "operation": "",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Load Organizations",
+        "x": 690,
+        "y": 60,
+        "wires": [
+            [
+                "cb7718a584f6234d"
+            ]
+        ]
+    },
+    {
+        "id": "cb7718a584f6234d",
+        "type": "function",
+        "z": "0a68234492479c04",
+        "name": "Format Response",
+        "func": "msg.statusCode = 200;\nmsg.payload = {\n    success: true,\n    data: msg.payload.map(org => ({\n        _id: org._id.toString(),\n        name: org.name,\n        code: org.code,\n        desc: org.desc,\n        createdAt: org.createdAt,\n        updatedAt: org.updatedAt\n    }))\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 60,
+        "wires": [
+            [
+                "1438a3d9f7df49f9"
+            ]
+        ]
+    },
+    {
+        "id": "2ac6544c18f307e3",
+        "type": "http response",
+        "z": "0a68234492479c04",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1370,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "27bb455dccf7cc86",
+        "type": "http in",
+        "z": "0a68234492479c04",
+        "name": "",
+        "url": "/api/v1/organizations/:id",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 160,
+        "wires": [
+            [
+                "dbb6e2d2d0347d20"
+            ]
+        ]
+    },
+    {
+        "id": "dbb6e2d2d0347d20",
+        "type": "function",
+        "z": "0a68234492479c04",
+        "name": "Get Organization By ID",
+        "func": "const ObjectId = mongodb.ObjectId;\nconst id = msg.req.params.id;\n\nif (!ObjectId.isValid(id)) {\n    msg.statusCode = 400;\n    msg.payload = { success: false, error: \"Invalid ID format\" };\n    return msg;\n}\n\nmsg.collection = \"organizations\";\nmsg.operation = \"findOne\";\nmsg.payload = [{ _id: new ObjectId(id) }];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "mongodb",
+                "module": "mongodb"
+            }
+        ],
+        "x": 430,
+        "y": 160,
+        "wires": [
+            [
+                "0b5a82da65764d10"
+            ]
+        ]
+    },
+    {
+        "id": "0b5a82da65764d10",
+        "type": "mongodb4",
+        "z": "0a68234492479c04",
+        "clientNode": "3f0da2b9df0ac8c2",
+        "mode": "collection",
+        "collection": "",
+        "operation": "",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Find Organization",
+        "x": 690,
+        "y": 160,
+        "wires": [
+            [
+                "e417d67aaf7675eb"
+            ]
+        ]
+    },
+    {
+        "id": "77191e526a8fbece",
+        "type": "function",
+        "z": "0a68234492479c04",
+        "name": "Format Organization",
+        "func": "msg.statusCode = 200;\nmsg.payload = {\n    success: true,\n    data: {\n        _id: msg.payload._id.toString(),\n        name: msg.payload.name,\n        code: msg.payload.code,\n        desc: msg.payload.desc,\n        createdAt: msg.payload.createdAt,\n        updatedAt: msg.payload.updatedAt\n    }\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 140,
+        "wires": [
+            [
+                "0db431ef724955b6"
+            ]
+        ]
+    },
+    {
+        "id": "e417d67aaf7675eb",
+        "type": "switch",
+        "z": "0a68234492479c04",
+        "name": "Found?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 880,
+        "y": 160,
+        "wires": [
+            [
+                "77191e526a8fbece"
+            ],
+            [
+                "27339ab392285ef4"
+            ]
+        ]
+    },
+    {
+        "id": "27339ab392285ef4",
+        "type": "function",
+        "z": "0a68234492479c04",
+        "name": "Not Found",
+        "func": "msg.statusCode = 404;\nmsg.payload = { success: false, error: \"Organization not found\" };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 180,
+        "wires": [
+            [
+                "fa875f56b4b67bbf"
+            ]
+        ]
+    },
+    {
+        "id": "fc5df16864cfd6c6",
+        "type": "http in",
+        "z": "0a68234492479c04",
+        "name": "",
+        "url": "/api/v1/organizations",
+        "method": "post",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "44c9c77ca172c1ad"
+            ]
+        ]
+    },
+    {
+        "id": "44c9c77ca172c1ad",
+        "type": "function",
+        "z": "0a68234492479c04",
+        "name": "Validate Create Organization",
+        "func": "const data = msg.payload;\n\n// Validation\nif (!data.name || !data.code) {\n    msg.statusCode = 400;\n    msg.payload = { \n        success: false, \n        error: \"Fields 'name' and 'code' are required\" \n    };\n    return [null, msg];  // Output 2 (erreur)\n}\n\n// Vérifier si code existe déjà\nmsg.collection = \"organizations\";\nmsg.operation = \"findOne\";\nmsg.payload = [{ code: data.code.trim() }];\nmsg.newOrgData = {\n    name: data.name.trim(),\n    code: data.code.trim(),\n    desc: (data.desc || \"\").trim()\n};\nreturn [msg, null];  // Output 1 (continue)",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 280,
+        "wires": [
+            [
+                "38deee9af2519b01"
+            ],
+            [
+                "e00dee3c12bd1fc6"
+            ]
+        ]
+    },
+    {
+        "id": "38deee9af2519b01",
+        "type": "mongodb4",
+        "z": "0a68234492479c04",
+        "clientNode": "3f0da2b9df0ac8c2",
+        "mode": "collection",
+        "collection": "",
+        "operation": "",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Check Code Exists",
+        "x": 690,
+        "y": 260,
+        "wires": [
+            [
+                "c6d63efc0a1673ae"
+            ]
+        ]
+    },
+    {
+        "id": "c6d63efc0a1673ae",
+        "type": "switch",
+        "z": "0a68234492479c04",
+        "name": "Code Exists?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 890,
+        "y": 240,
+        "wires": [
+            [
+                "6f4082cfc1d3e928"
+            ],
+            [
+                "a196143ad0159675"
+            ]
+        ]
+    },
+    {
+        "id": "6f4082cfc1d3e928",
+        "type": "function",
+        "z": "0a68234492479c04",
+        "name": "Code Already Exists",
+        "func": "msg.statusCode = 409;\nmsg.payload = {\n    success: false,\n    error: `Organization with code '${msg.newOrgData.code}' already exists`\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 220,
+        "wires": [
+            [
+                "ab5184eb97361cec"
+            ]
+        ]
+    },
+    {
+        "id": "a196143ad0159675",
+        "type": "function",
+        "z": "0a68234492479c04",
+        "name": "Prepare Insert",
+        "func": "msg.collection = \"organizations\";\nmsg.operation = \"insertOne\";\nmsg.payload = [{\n    name: msg.newOrgData.name,\n    code: msg.newOrgData.code,\n    desc: msg.newOrgData.desc,\n    createdAt: new Date(),\n    updatedAt: new Date()\n}];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 260,
+        "wires": [
+            [
+                "f0c6c9a5da9ae0f2"
+            ]
+        ]
+    },
+    {
+        "id": "f0c6c9a5da9ae0f2",
+        "type": "mongodb4",
+        "z": "0a68234492479c04",
+        "clientNode": "3f0da2b9df0ac8c2",
+        "mode": "collection",
+        "collection": "",
+        "operation": "",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Insert Organization",
+        "x": 1330,
+        "y": 260,
+        "wires": [
+            [
+                "9e8e163c73837eeb"
+            ]
+        ]
+    },
+    {
+        "id": "9e8e163c73837eeb",
+        "type": "function",
+        "z": "0a68234492479c04",
+        "name": "Insert Success",
+        "func": "msg.statusCode = 201;\nmsg.payload = {\n    success: true,\n    data: { _id: msg.payload.insertedId.toString() }\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 260,
+        "wires": [
+            [
+                "73c00f05215b4689"
+            ]
+        ]
+    },
+    {
+        "id": "e00dee3c12bd1fc6",
+        "type": "link out",
+        "z": "0a68234492479c04",
+        "name": "http response",
+        "mode": "link",
+        "links": [
+            "168ffc6c845cacb7"
+        ],
+        "x": 615,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ab5184eb97361cec",
+        "type": "link out",
+        "z": "0a68234492479c04",
+        "name": "http response",
+        "mode": "link",
+        "links": [
+            "168ffc6c845cacb7"
+        ],
+        "x": 1255,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "73c00f05215b4689",
+        "type": "link out",
+        "z": "0a68234492479c04",
+        "name": "http response",
+        "mode": "link",
+        "links": [
+            "168ffc6c845cacb7"
+        ],
+        "x": 1675,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "0db431ef724955b6",
+        "type": "link out",
+        "z": "0a68234492479c04",
+        "name": "http response",
+        "mode": "link",
+        "links": [
+            "168ffc6c845cacb7"
+        ],
+        "x": 1235,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "fa875f56b4b67bbf",
+        "type": "link out",
+        "z": "0a68234492479c04",
+        "name": "http response",
+        "mode": "link",
+        "links": [
+            "168ffc6c845cacb7"
+        ],
+        "x": 1205,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1438a3d9f7df49f9",
+        "type": "link out",
+        "z": "0a68234492479c04",
+        "name": "http response",
+        "mode": "link",
+        "links": [
+            "168ffc6c845cacb7"
+        ],
+        "x": 1055,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "168ffc6c845cacb7",
+        "type": "link in",
+        "z": "0a68234492479c04",
+        "name": "http response",
+        "links": [
+            "0db431ef724955b6",
+            "1438a3d9f7df49f9",
+            "73c00f05215b4689",
+            "ab5184eb97361cec",
+            "e00dee3c12bd1fc6",
+            "fa875f56b4b67bbf"
+        ],
+        "x": 1255,
+        "y": 60,
+        "wires": [
+            [
+                "2ac6544c18f307e3"
+            ]
+        ]
     }
 ]
